@@ -23,7 +23,7 @@ Secara umum, tujuan dari object detection adalah menentukan `lokasi` dan `katego
 Perbandingan image classification, object localization, dan object detection. `Image classification` hanya berfokus `menentukan kategori objek` dengan menganalisis keseluruhan citra. `Object localization` kemudian `menambahkan penentuan lokasi` dari objek yang ada pada citra. Kedua jenis tugas ini diimplementasikan pada kasus `single object`. Penggabungan classification dan localization untuk multiple objects kemudian disebut sebagai `object detection`. Kemampuan inilah yang membuat object detection sangat cocok digunakan pada pemahaman citra dan analisis video.
 
 <p align="center">
-    <img src="https://i.stack.imgur.com/WYQp3.png" width="640" style="vertical-align:middle">
+    <img src="contents/RCNN.png" width="640" style="vertical-align:middle">
 </p>
 
 Pada proses pendeteksian suatu objek, terdapat dua metode dalam menyelesaikan tugas tersebut diantaranya `one-stage` dan `two-stage` detectors. `One-stage-detector` menggunakan jaringan tunggal `feed-forward fully convolutional` yang secara langsung menyediakan `bounding box` dan `klasifikasi objek`. `Two-stage-detector` terdiri dari proses `region proposal` dan `tahap klasifikasi`. Beberapa algoritma Object Detection yang menggunakan `one-stage-detector` adalah `YOLO` dan `SSD`, sedangkan algoritma Object Detection yang menggunakan `two-stage-detector` adalah RCNN, Fast RCNN, dan Faster RCNN.
@@ -165,9 +165,10 @@ Ketika akan mendeteksi objek yang lebih kecil, maka perlu menggunakan `anchor bo
 
 YOLOv11 terdiri dari beberapa jenis arsitektur dengan tingkat performansi yang berbeda-beda. Perbedaan seri YOLOv11 terdapat pada `nilai AP`, `Params`, dan `FLOPs`. Perbandingan performansi seri YOLOv11 dapat dilihat pada gambar dibawah ini.
 
-<p align="center">
-    <img src="contents\graph_yolo.webp" width="640" style="vertical-align:middle">
-</p>
+<div align="center">
+        <img src="contents\graph_yolo.webp" alt="C2PSA" width="400" align="center">
+        <img src="contents\yolo11-model-table.png" alt="SPFF" width="500" align="center">
+    </div>
 
 Pada gambar tersebut, terlihat bahwa seri YOLOv11x memiliki nilai Average Precision (AP), jumlah parameter (Params), dan Floating Point Operations per Second (FLOPs) paling tinggi dibandingkan dengan seri-seri YOLOv11 lainnya pada validasi dataset COCO. Hal ini menunjukkan bahwa YOLOv11x adalah varian dengan akurasi deteksi objek terbaik, karena nilai AP yang tinggi mengindikasikan bahwa model ini dapat mengenali objek dengan tingkat presisi yang lebih tinggi. Selain itu, Params yang lebih banyak menunjukkan bahwa model ini lebih kompleks dan memiliki lebih banyak kapasitas untuk mempelajari fitur-fitur halus dalam citra, yang berkontribusi pada akurasi deteksi yang lebih baik. Namun, kompleksitas ini juga tercermin dalam FLOPs yang lebih tinggi, yang berarti model YOLOv11x memerlukan lebih banyak komputasi untuk menjalankan deteksi, sehingga memperlambat waktu inferensi dibandingkan dengan model lainnya. Meskipun memiliki keunggulan dalam akurasi dan kompleksitas, penggunaan YOLOv11x mungkin tidak optimal untuk aplikasi yang membutuhkan deteksi real-time dengan keterbatasan sumber daya komputasi. Seri YOLOv11 lainnya seperti YOLOv11m, YOLOv11s, dan YOLOv11n memiliki nilai AP yang lebih rendah namun inferensi yang lebih cepat.
 
