@@ -117,4 +117,7 @@ Setelah mengetahui sekilas tentang `Roboflow`, maka kita langsung saja masuk ke 
 
 Sekian tutorial singkat membuat dataset menggunakan `Roboflow` ini, semoga bisa dimengerti oleh teman-teman.
 
+Teman-teman juga bisa melihat tutorial Roboflow melalui vidio di bawah ini.
+[Tutor Roboflow](https://www.youtube.com/watch?v=NenFL5EgY_o)
+
 **Terima Kasih**
