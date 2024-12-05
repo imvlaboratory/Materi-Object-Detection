@@ -262,7 +262,7 @@ Selain PASCAL VOC terdapat juga COCO. COCO menggunakan IoU 0.5 sampai dengan 0.9
 
 - Output berupa file `.ipynb` beserta tautan `Dataset di Roboflow`.
 
-- Tugas dikumpulkan pada tautan berikut [**`Pengumpulan Tugas Akhir Transfer Learning`**]()
+- Tugas dikumpulkan pada tautan berikut [**`Pengumpulan Tugas Akhir Transfer Learning`**](https://forms.gle/xAnxGZVXCEA3prED6)
 
 </br></br>
 
