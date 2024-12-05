@@ -269,6 +269,7 @@ Selain PASCAL VOC terdapat juga COCO. COCO menggunakan IoU 0.5 sampai dengan 0.9
 # Code
 
 - [**`Workflow`**]()
+- [**`Contoh Notebook untuk train model YOLO`**](https://www.kaggle.com/code/rafimahfuz/train-w-yolo)
 
 </br></br>
 
