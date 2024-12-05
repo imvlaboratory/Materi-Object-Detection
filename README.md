@@ -1,4 +1,4 @@
-<h1 align="center"> Object Detection </h1>
+<h1 align="center">Object Detection</h1>
 
 <p align="center">
     <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" style="vertical-align:middle">
@@ -28,11 +28,11 @@ Perbandingan image classification, object localization, dan object detection. `I
 
 Pada proses pendeteksian suatu objek, terdapat dua metode dalam menyelesaikan tugas tersebut diantaranya `one-stage` dan `two-stage` detectors. `One-stage-detector` menggunakan jaringan tunggal `feed-forward fully convolutional` yang secara langsung menyediakan `bounding box` dan `klasifikasi objek`. `Two-stage-detector` terdiri dari proses `region proposal` dan `tahap klasifikasi`. Beberapa algoritma Object Detection yang menggunakan `one-stage-detector` adalah `YOLO` dan `SSD`, sedangkan algoritma Object Detection yang menggunakan `two-stage-detector` adalah RCNN, Fast RCNN, dan Faster RCNN.
 
-# Algoritma Deep Learning
+## Algoritma Deep Learning
 
 Deep Learning memiliki berbagai jenis algoritma untuk menyelesaikan masalah yang spesifik. Convolutional Neural Network (CNN) merupakan salah satu algoritma utama yang digunakan untuk mengekstrak ciri dari citra. Arsitektur pada CNN terdiri dari convolution layers, pooling layers, dan fully connected layers. CNN umum digunakan pada arsitektur image classification dan object detection.
 
-# YOLO
+## YOLO
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/72246401/190171792-fcdee57c-46ee-4d34-aced-14446299b22b.png" width="640" style="vertical-align:middle">
@@ -62,7 +62,7 @@ Terdapat beberapa versi dari perkembangan YOLO berdasarkan penelitian-penelitian
     <img src="contents\tabel_perbandingan.png" width="480" style="vertical-align:middle">
 </p>
 
-# YOLOv11
+## YOLOv11
 
 YOLO adalah algoritma object detection yang terkenal karena kecepatan dan akurasinya, memproses seluruh citra dalam satu forward pass jaringan. YOLO pertama kali diperkenalkan oleh Joseph Redmon pada tahun 2015 dan telah berkembang pesat hingga versi terbaru yaitu YOLOv11.
 
@@ -78,11 +78,11 @@ Berdasarkan file .yaml model YOLOv11 memiliki struktur model sebagai berikut:
 1. Neck (Path Aggregation Network)
 1. Detection Head
 
-## 1. Backbone
+### 1. Backbone
 
 Backbone adalah komponen penting dalam arsitektur YOLO yang bertanggung jawab untuk mengekstrak fitur dari citra masukan pada berbagai skala. Proses ini melibatkan tumpukan lapisan konvolusi dan blok spesial untuk menghasilkan peta fitur dengan berbagai resolusi.
 
-### 1.1 Lapisan Konvolusi dan Blok C3k2
+#### 1.1 Lapisan Konvolusi dan Blok C3k2
 
 YOLOv11 mempertahankan struktur yang mirip dengan versi-versi sebelumnya, menggunakan lapisan konvolusi awal untuk menurunkan resolusi citra. Lapisan-lapisan ini membentuk dasar dari proses ekstraksi fitur, secara bertahap mengurangi dimensi spasial sambil meningkatkan jumlah saluran. Salah satu peningkatan signifikan pada YOLOv11 adalah pengenalan blok **C3k2**, yang menggantikan blok **C2f** yang digunakan pada versi sebelumnya. Blok **C3k2** adalah implementasi yang lebih efisien secara komputasi dari **Cross Stage Partial (CSP) Bottleneck**. Blok ini menggunakan dua konvolusi kecil daripada satu konvolusi besar, seperti yang terlihat pada YOLOv8. "k2" dalam **C3k2** merujuk pada ukuran kernel yang lebih kecil, yang berkontribusi pada pemrosesan yang lebih cepat sambil tetap mempertahankan kinerja yang baik.
 
@@ -90,20 +90,23 @@ YOLOv11 mempertahankan struktur yang mirip dengan versi-versi sebelumnya, menggu
     <img src="contents\convblock.webp" width="640" style="vertical-align:middle">
 </p>
 
-## 2. Neck
+### 2. Neck
 
 Neck menggabungkan fitur dari berbagai skala dan mengirimkannya ke head untuk prediksi. Proses ini umumnya melibatkan upsampling dan konkatenasi peta fitur dari berbagai tingkat, memungkinkan model untuk menangkap informasi multi-skala dengan efektif.
 
-### 2.1 SPPF dan C2PSA
+#### 2.1 SPPF dan C2PSA
 
 YOLOv11 tetap menggunakan blok **Spatial Pyramid Pooling - Fast (SPPF)** dari versi sebelumnya, namun memperkenalkan blok baru **C2PSA (Cross Stage Partial with Spatial Attention)** setelahnya. Blok **C2PSA** ini merupakan penambahan yang signifikan untuk meningkatkan perhatian spasial dalam peta fitur. Mekanisme perhatian spasial ini memungkinkan model untuk lebih fokus pada area-area penting dalam citra. Dengan melakukan pooling fitur secara spasial, **C2PSA** memungkinkan YOLOv11 untuk memfokuskan perhatian pada area-area yang menjadi perhatian utama, yang berpotensi meningkatkan akurasi deteksi untuk objek dengan ukuran dan posisi yang bervariasi.
 
 <div align="center">
-    <img src="contents/c2psa.webp" alt="C2PSA" width="420" align="center">
+    <img src="contents/c2psa.webp" alt="C2PSA" width="480" align="center">
+</div>
+
+<div align="center">
     <img src="contents/spff.webp" alt="SPFF" width="480" align="center">
 </div>
 
-### 2.2 Blok C3k2
+#### 2.2 Blok C3k2
 
 YOLOv11 memperkenalkan perubahan signifikan dengan mengganti blok **C2f** di bagian neck dengan blok **C3k2**. Blok **C3k2** ini dirancang untuk lebih cepat dan lebih efisien, meningkatkan kinerja keseluruhan dalam proses agregasi fitur. Setelah upsampling dan konkatenasi, neck di YOLOv11 menggunakan blok yang lebih efisien ini, yang menghasilkan peningkatan kecepatan dan kinerja.
 
@@ -111,15 +114,15 @@ YOLOv11 memperkenalkan perubahan signifikan dengan mengganti blok **C2f** di bag
     <img src="contents\c3k2.webp" width="640" style="vertical-align:middle">
 </p>
 
-### 2.3 Mekanisme Perhatian (Attention Mechanism)
+#### 2.3 Mekanisme Perhatian (Attention Mechanism)
 
 Salah satu penambahan penting pada YOLOv11 adalah peningkatan fokus pada perhatian spasial melalui modul **C2PSA**. Mekanisme perhatian ini memungkinkan model untuk lebih memusatkan perhatian pada wilayah kunci dalam citra, yang berpotensi menghasilkan deteksi yang lebih akurat, terutama untuk objek yang lebih kecil atau terhalang sebagian. Penambahan **C2PSA** ini membedakan YOLOv11 dari pendahulunya, seperti YOLOv8, yang tidak memiliki mekanisme perhatian ini.
 
-## 3. Head
+### 3. Head
 
 Head pada YOLOv11 bertanggung jawab untuk menghasilkan prediksi akhir dalam bentuk deteksi objek dan klasifikasi. Proses ini melibatkan pemrosesan peta fitur yang diteruskan dari neck, yang akhirnya menghasilkan bounding box dan label kelas untuk objek dalam citra.
 
-### 3.1 Blok C3k2
+#### 3.1 Blok C3k2
 
 Di bagian head, YOLOv11 menggunakan beberapa blok **C3k2** untuk memproses dan menyempurnakan peta fitur secara efisien. Blok **C3k2** ini ditempatkan di beberapa jalur dalam head dan berfungsi untuk memproses fitur multi-skala pada berbagai kedalaman. Blok **C3k2** memiliki fleksibilitas yang bergantung pada nilai parameter **c3k**:
 
@@ -133,7 +136,7 @@ Di bagian head, YOLOv11 menggunakan beberapa blok **C3k2** untuk memproses dan m
 
 Selain itu, ada juga blok **C3k**, yang menawarkan fleksibilitas lebih dengan memungkinkan ukuran kernel yang dapat disesuaikan. Fleksibilitas ini sangat berguna untuk mengekstrak fitur yang lebih detail dari citra, yang berkontribusi pada peningkatan akurasi deteksi.
 
-### 3.2 Blok CBS
+#### 3.2 Blok CBS
 
 Head YOLOv11 mencakup beberapa lapisan **CBS (Convolution-BatchNorm-Silu)** setelah blok **C3k2**. Lapisan CBS ini lebih lanjut menyempurnakan peta fitur dengan cara:
 
@@ -143,7 +146,7 @@ Head YOLOv11 mencakup beberapa lapisan **CBS (Convolution-BatchNorm-Silu)** sete
 
 Blok CBS berfungsi sebagai komponen dasar dalam ekstraksi fitur dan proses deteksi, memastikan bahwa peta fitur yang telah disempurnakan diteruskan ke lapisan berikutnya untuk prediksi bounding box dan klasifikasi objek.
 
-### 3.3 Lapisan Konvolusi Terakhir dan Lapisan Deteksi
+#### 3.3 Lapisan Konvolusi Terakhir dan Lapisan Deteksi
 
 Setiap cabang deteksi diakhiri dengan serangkaian lapisan **Conv2D**, yang mereduksi fitur menjadi jumlah output yang dibutuhkan untuk koordinat bounding box dan prediksi kelas. Lapisan **Detect** akhir mengonsolidasikan prediksi ini, yang mencakup:
 
@@ -158,9 +161,9 @@ Sebelum terbentuk bounding box diperlukan `anchor box` untuk membuat prediksi bo
 </p>
 
 1. P3/8 adalah untuk mendeteksi objek yang lebih kecil.
-1. P4/16 adalah untuk mendeteksi objek medium.
-1. P5/32 adalah untuk mendeteksi objek yang lebih besar.
-1. P6/64 adalah untuk mendeteksi objek yang lebih ekstra besar.
+2. P4/16 adalah untuk mendeteksi objek medium.
+3. P5/32 adalah untuk mendeteksi objek yang lebih besar.
+4. P6/64 adalah untuk mendeteksi objek yang lebih ekstra besar.
 
 Ketika akan mendeteksi objek yang lebih kecil, maka perlu menggunakan `anchor box` yang lebih kecil dan untuk objek sedang Anda harus menggunakan anchor box skala menengah, begitu seterusnya.
 
@@ -178,18 +181,21 @@ Ketika akan mendeteksi objek yang lebih kecil, maka perlu menggunakan `anchor bo
 
 `Detection head` menghasilkan output vektor terakhir dengan `bounding box (x,y,w,h)`, `skor objektivitas`, dan `probabilitas kelas`.
 
-# Performa Model YOLOv11
+## Performa Model YOLOv11
 
 YOLOv11 terdiri dari beberapa jenis arsitektur dengan tingkat performansi yang berbeda-beda. Perbedaan seri YOLOv11 terdapat pada `nilai AP`, `Params`, dan `FLOPs`. Perbandingan performansi seri YOLOv11 dapat dilihat pada gambar dibawah ini.
 
 <div align="center">
-        <img src="contents\graph_yolo.webp" alt="C2PSA" width="400" align="center">
-        <img src="contents\yolo11-model-table.png" alt="SPFF" width="500" align="center">
-    </div>
+     <img src="contents\graph_yolo.webp" alt="C2PSA" width="500" align="center">
+</div>
+
+<div align="center">
+    <img src="contents\yolo11-model-table.png" alt="SPFF" width="500" align="center">
+</div>
 
 Pada gambar tersebut, terlihat bahwa seri YOLOv11x memiliki nilai Average Precision (AP), jumlah parameter (Params), dan Floating Point Operations per Second (FLOPs) paling tinggi dibandingkan dengan seri-seri YOLOv11 lainnya pada validasi dataset COCO. Hal ini menunjukkan bahwa YOLOv11x adalah varian dengan akurasi deteksi objek terbaik, karena nilai AP yang tinggi mengindikasikan bahwa model ini dapat mengenali objek dengan tingkat presisi yang lebih tinggi. Selain itu, Params yang lebih banyak menunjukkan bahwa model ini lebih kompleks dan memiliki lebih banyak kapasitas untuk mempelajari fitur-fitur halus dalam citra, yang berkontribusi pada akurasi deteksi yang lebih baik. Namun, kompleksitas ini juga tercermin dalam FLOPs yang lebih tinggi, yang berarti model YOLOv11x memerlukan lebih banyak komputasi untuk menjalankan deteksi, sehingga memperlambat waktu inferensi dibandingkan dengan model lainnya. Meskipun memiliki keunggulan dalam akurasi dan kompleksitas, penggunaan YOLOv11x mungkin tidak optimal untuk aplikasi yang membutuhkan deteksi real-time dengan keterbatasan sumber daya komputasi. Seri YOLOv11 lainnya seperti YOLOv11m, YOLOv11s, dan YOLOv11n memiliki nilai AP yang lebih rendah namun inferensi yang lebih cepat.
 
-# Evaluasi Model
+## Evaluasi Model
 
 ### Mean Average Precision
 
@@ -240,39 +246,33 @@ Selain PASCAL VOC terdapat juga COCO. COCO menggunakan IoU 0.5 sampai dengan 0.9
 
 </br></br>
 
----
-
-## Sistematika Pengerjaan
+# Sistematika Pengerjaan
 
 - Buatlah program `Deep Learning` berupa `Object Detection`.
 
-- Input berupa gambar dan output berupa gambar dengan _bounding box_.
+- Input berupa gambar dan output berupa gambar yang sama dengan _bounding box_ beserta labelnya.
 
-- Model yang digunakan adalah `YOLOv11`, silahkan pilih variasi model yang sesuai dengan kebutuhan.
+- Model yang digunakan adalah `YOLOv11`, silahkan pilih variasi model sesuai dengan kebutuhan.
 
-- Dataset berupa wajah kelompok dengan minimal 150 gambar per orang, silahkan merujuk pada tautan berikut untuk [**pembuatan dataset**]().
+- Dataset berupa wajah kelompok dengan minimal **150 gambar** per orang, silahkan merujuk pada tautan berikut untuk [**`Pembuatan Dataset`**](/Create_Dataset/README.md).
 
 - Model yang dirancang berupa `Transfer Learning` atau menggunakan `YOLO Pre-Trained Model` yang kemudian dilatih kembali dengan dataset yang telah dibuat.
 
 - Evaluasi model dilakukan dengan gambar di luar dataset.
 
-- Output berupa file `.ipynb` atau kode di `GitHub Repository`.
+- Output berupa file `.ipynb` beserta tautan `Dataset di Roboflow`.
 
-- Tugas dikumuplan data tautan berikut [**pengumpulan tugas akhir transfer learning**]()
-
-</br></br>
-
----
-
-## Code
-
-- [Workflow]()
+- Tugas dikumpulkan pada tautan berikut [**`Pengumpulan Tugas Akhir Transfer Learning`**]()
 
 </br></br>
 
----
+# Code
 
-## Referensi:
+- [**`Workflow`**]()
+
+</br></br>
+
+# Referensi
 
 - https://becominghuman.ai/understanding-anchors-backbone-of-object-detection-using-yolo-54962f00fbbb
 - https://docs.ultralytics.com/models/yolo11/
